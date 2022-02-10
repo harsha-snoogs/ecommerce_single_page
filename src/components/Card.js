@@ -2,7 +2,6 @@ import React from "react";
 
 function Card(props) {
   const { product } = props;
-  console.log("products", product);
 
   let mrpPrice =
     product.price !== product.mrp ? (
@@ -13,7 +12,7 @@ function Card(props) {
  
   return (
     <div className="col">
-      <div className="card h-100">
+      <div className="card h-100 shadow-sm p-3 mb-3 bg-body rounded">
         <img src={product.searchImage} className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{product.brand}</h5>

@@ -3,12 +3,12 @@ import SidePanel from "./SidePanel";
 import CenterScreen from "./CenterScreen";
 import axios from "axios";
 import Loader from "./Loader";
-import SortBy from "./SortBy";
+import Navbar from "./Navbar";
 
 function Home() {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilterData] = useState([]);
 
   const getData = async () => {
     const users = await axios.get("https://demo7303877.mockable.io/");
@@ -17,19 +17,20 @@ function Home() {
   };
 
   useEffect(() => {
+    //data loaded from API for the first render
     getData();
   }, []);
-
-  console.log("data", data, loading);
 
   return (
     <>
       {!loading ? (
         <div className="container-fluid">
+          <div className="row" style={{marginBottom:"0.75rem"}}>
+            <Navbar />
+          </div>
           <div className="row">
-            <div className="col-lg-2">
-              <SortBy/>  
-              <SidePanel rawData={data} filterDataHandler={setFilteredData} />
+            <div className="col-lg-2" style={{borderRight:"1px solid #C0C0C0"}}>
+              <SidePanel rawData={data} filterDataHandler={setFilterData} />
             </div>
             <div className="col-lg-9">
               <CenterScreen
